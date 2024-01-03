@@ -1,4 +1,7 @@
-using SkiaSharp;
+using SixLabors.ImageSharp;
+using SixLabors.ImageSharp.PixelFormats;
+using SixLabors.ImageSharp.Processing;
+using SixLabors.ImageSharp.Drawing.Processing;
 using System;
 using System.IO;
 
@@ -57,7 +60,7 @@ namespace Weland
             return collections[n];
         }
 
-        public SKBitmap GetShape(ShapeDescriptor d)
+        public Image<Rgba32> GetShape(ShapeDescriptor d)
         {
             Collection coll = collections[d.Collection];
             if (d.Bitmap < coll.BitmapCount && d.CLUT < coll.ColorTableCount)
@@ -66,22 +69,9 @@ namespace Weland
             }
             else
             {
-                var paint = new SKPaint
-                {
-                    Color = new SKColor(127, 127, 127),
-                    IsAntialias = true
-                };
-
-                int width = 128;
-                int height = 128;
-                var bitmap = new SKBitmap(width, height);
-                using (var canvas = new SKCanvas(bitmap))
-                {
-                    canvas.Clear(SKColors.White);
-                    var rect = new SKRect(0, 0, width, height);
-                    canvas.DrawRect(rect, paint);
-                    return bitmap;
-                }
+                var bitmap = new Image<Rgba32>(128, 128);
+                bitmap.Mutate(x => x.Fill(new Color(new Rgb24(127, 127, 127))));
+                return bitmap;
             }
         }
     }

@@ -1,49 +1,28 @@
-using SkiaSharp;
-using System;
+using SixLabors.ImageSharp;
+using SixLabors.ImageSharp.PixelFormats;
+using SixLabors.ImageSharp.Processing;
+using System.IO;
 
 namespace Weland
 {
     public class ImageUtilities
     {
-        public static Gdk.Pixbuf ImageToPixbuf(SKBitmap bitmap)
+        public static Gdk.Pixbuf ImageToPixbuf(Image<Rgba32> bitmap)
         {
-            using SKPixmap pixmap = bitmap.PeekPixels();
-            using SKImage skiaImage = SKImage.FromPixels(pixmap);
-
-            var info = new SKImageInfo(skiaImage.Width, skiaImage.Height);
-            var pixbuf = new Gdk.Pixbuf(Gdk.Colorspace.Rgb, has_alpha: true, 8, info.Width, info.Height);
-
-            using (var newPixMap = new SKPixmap(info, pixbuf.Pixels, pixbuf.Rowstride))
-            {
-                skiaImage.ReadPixels(newPixMap, 0, 0);
-            }
-
-            if (info.ColorType == SKColorType.Bgra8888)
-            {
-                SKSwizzle.SwapRedBlue(pixbuf.Pixels, info.Width * info.Height);
-            }
-
-            GC.KeepAlive(bitmap);
-            return pixbuf;
+            using var stream = new MemoryStream();
+            bitmap.SaveAsBmp(stream);
+            stream.Position = 0;
+            return new Gdk.Pixbuf(stream);
         }
 
-        public static SKBitmap ResizeImage(SKBitmap image, int width, int height)
+        public static Image<Rgba32> ResizeImage(Image<Rgba32> bitmap, int width, int height)
         {
-            return image.Resize(new SKImageInfo(width, height), SKFilterQuality.None);
+            return bitmap.Clone(x => x.Resize(width, height));
         }
 
-        public static SKBitmap RotateBitmap(SKBitmap image, float degrees)
+        public static Image<Rgba32> RotateBitmap(Image<Rgba32> bitmap, float degrees)
         {
-            var rotatedImage = new SKBitmap(image.Height, image.Width);
-            using (var canvas = new SKCanvas(rotatedImage))
-            {
-                canvas.Clear(SKColors.White);
-                canvas.Translate(rotatedImage.Width, 0);
-                canvas.RotateDegrees(degrees);
-                canvas.DrawBitmap(image, 0, 0);
-            }
-
-            return rotatedImage;
+            return bitmap.Clone(x => x.Rotate(degrees));
         }
     }
 }

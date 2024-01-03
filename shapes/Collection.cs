@@ -1,7 +1,7 @@
-using System.Drawing;
 using System.IO;
 using System.Collections.Generic;
-using SkiaSharp;
+using SixLabors.ImageSharp;
+using SixLabors.ImageSharp.PixelFormats;
 
 namespace Weland
 {
@@ -203,7 +203,7 @@ namespace Weland
             }
         }
 
-        public SKBitmap GetShape(byte ColorTableIndex, byte BitmapIndex)
+        public Image<Rgba32> GetShape(byte ColorTableIndex, byte BitmapIndex)
         {
             Bitmap bitmap = Type == CollectionType.Wall && BitmapIndex < lowLevelShapeCount - 1 ? bitmaps[lowLevelShapes[BitmapIndex].BitmapIndex] : bitmaps[BitmapIndex];
             ColorValue[] colorTable = colorTables[ColorTableIndex];
@@ -211,20 +211,19 @@ namespace Weland
             for (int i = 0; i < colorTable.Length; ++i)
             {
                 ColorValue color = colorTable[i];
-                colors[i] = Color.FromArgb(color.Red >> 8,
-                               color.Green >> 8,
-                               color.Blue >> 8);
+                colors[i] = Color.FromRgb((byte)(color.Red >> 8),
+                               (byte)(color.Green >> 8),
+                               (byte)(color.Blue >> 8));
             }
 
-            var imageBitmap = new SKBitmap(bitmap.Width, bitmap.Height);
+            var imageBitmap = new Image<Rgba32>(bitmap.Width, bitmap.Height);
 
             for (int x = 0; x < bitmap.Width; ++x)
             {
                 for (int y = 0; y < bitmap.Height; ++y)
                 {
                     var color = colors[bitmap.Data[x + y * bitmap.Width]];
-                    var skColor = new SKColor(color.R, color.G, color.B, color.A);
-                    imageBitmap.SetPixel(x, y, skColor);
+                    imageBitmap[x, y] = color;
                 }
             }
 

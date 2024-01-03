@@ -31,12 +31,12 @@ namespace Weland
                     {
                         for (int y = 0; y < bitmap.Height; ++y)
                         {
-                            var color = bitmap.GetPixel(x, y);
+                            var color = bitmap[x, y];
                             int offset = (y * bitmap.Width + x) * 4;
-                            bytes[offset] = color.Blue;
-                            bytes[offset + 1] = color.Green;
-                            bytes[offset + 2] = color.Red;
-                            bytes[offset + 3] = color.Alpha;
+                            bytes[offset] = color.B;
+                            bytes[offset + 1] = color.G;
+                            bytes[offset + 2] = color.R;
+                            bytes[offset + 3] = color.A;
                         }
                     }
                 }
@@ -46,12 +46,12 @@ namespace Weland
                     {
                         for (int y = 0; y < bitmap.Height; ++y)
                         {
-                            var color = bitmap.GetPixel(x, y);
+                            var color = bitmap[x, y];
                             int offset = (x * bitmap.Width + y) * 4;
-                            bytes[offset] = color.Blue;
-                            bytes[offset + 1] = color.Green;
-                            bytes[offset + 2] = color.Red;
-                            bytes[offset + 3] = color.Alpha;
+                            bytes[offset] = color.B;
+                            bytes[offset + 1] = color.G;
+                            bytes[offset + 2] = color.R;
+                            bytes[offset + 3] = color.A;
                         }
                     }
                 }

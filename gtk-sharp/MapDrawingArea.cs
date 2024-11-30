@@ -1,6 +1,7 @@
 using Pango;
 using System;
 using System.Collections.Generic;
+using Weland.Properties;
 
 namespace Weland
 {
@@ -86,33 +87,33 @@ namespace Weland
 
         public MapDrawingArea()
         {
-            itemImages[ItemType.Magnum] = new Gdk.Pixbuf(null, "pistol.png");
-            itemImages[ItemType.MagnumMagazine] = new Gdk.Pixbuf(null, "pistol-ammo.png");
-            itemImages[ItemType.PlasmaPistol] = new Gdk.Pixbuf(null, "fusion.png");
-            itemImages[ItemType.PlasmaMagazine] = new Gdk.Pixbuf(null, "fusion-ammo.png");
-            itemImages[ItemType.AssaultRifle] = new Gdk.Pixbuf(null, "ar.png");
-            itemImages[ItemType.AssaultRifleMagazine] = new Gdk.Pixbuf(null, "ar-ammo.png");
-            itemImages[ItemType.AssaultGrenadeMagazine] = new Gdk.Pixbuf(null, "ar-grenades.png");
-            itemImages[ItemType.MissileLauncher] = new Gdk.Pixbuf(null, "rl.png");
-            itemImages[ItemType.MissileLauncherMagazine] = new Gdk.Pixbuf(null, "rl-ammo.png");
-            itemImages[ItemType.InvisibilityPowerup] = new Gdk.Pixbuf(null, "powerup.png");
-            itemImages[ItemType.InvincibilityPowerup] = new Gdk.Pixbuf(null, "invinc.png");
-            itemImages[ItemType.InfravisionPowerup] = new Gdk.Pixbuf(null, "powerup.png");
-            itemImages[ItemType.AlienShotgun] = new Gdk.Pixbuf(null, "alien-gun.png");
-            itemImages[ItemType.Flamethrower] = new Gdk.Pixbuf(null, "tozt.png");
-            itemImages[ItemType.FlamethrowerCanister] = new Gdk.Pixbuf(null, "tozt-ammo.png");
-            itemImages[ItemType.ExtravisionPowerup] = new Gdk.Pixbuf(null, "powerup.png");
-            itemImages[ItemType.OxygenPowerup] = new Gdk.Pixbuf(null, "oxygen.png");
-            itemImages[ItemType.EnergyPowerup] = new Gdk.Pixbuf(null, "1x.png");
-            itemImages[ItemType.DoubleEnergyPowerup] = new Gdk.Pixbuf(null, "2x.png");
-            itemImages[ItemType.TripleEnergyPowerup] = new Gdk.Pixbuf(null, "3x.png");
-            itemImages[ItemType.Shotgun] = new Gdk.Pixbuf(null, "shotgun.png");
-            itemImages[ItemType.ShotgunMagazine] = new Gdk.Pixbuf(null, "shotgun-ammo.png");
-            itemImages[ItemType.UplinkChip] = new Gdk.Pixbuf(null, "uplink-chip.png");
-            itemImages[ItemType.SphtDoorKey] = new Gdk.Pixbuf(null, "keycard.png");
-            itemImages[ItemType.RedBall] = new Gdk.Pixbuf(null, "skull.png");
-            itemImages[ItemType.Smg] = new Gdk.Pixbuf(null, "smg.png");
-            itemImages[ItemType.SmgAmmo] = new Gdk.Pixbuf(null, "smg-ammo.png");
+            itemImages[ItemType.Magnum] = new Gdk.Pixbuf(Resources.pistol);
+            itemImages[ItemType.MagnumMagazine] = new Gdk.Pixbuf(Resources.pistol_ammo);
+            itemImages[ItemType.PlasmaPistol] = new Gdk.Pixbuf(Resources.fusion);
+            itemImages[ItemType.PlasmaMagazine] = new Gdk.Pixbuf(Resources.fusion_ammo);
+            itemImages[ItemType.AssaultRifle] = new Gdk.Pixbuf(Resources.ar);
+            itemImages[ItemType.AssaultRifleMagazine] = new Gdk.Pixbuf(Resources.ar_ammo);
+            itemImages[ItemType.AssaultGrenadeMagazine] = new Gdk.Pixbuf(Resources.ar_grenades);
+            itemImages[ItemType.MissileLauncher] = new Gdk.Pixbuf(Resources.rl);
+            itemImages[ItemType.MissileLauncherMagazine] = new Gdk.Pixbuf(Resources.rl_ammo);
+            itemImages[ItemType.InvisibilityPowerup] = new Gdk.Pixbuf(Resources.powerup);
+            itemImages[ItemType.InvincibilityPowerup] = new Gdk.Pixbuf(Resources.invinc);
+            itemImages[ItemType.InfravisionPowerup] = new Gdk.Pixbuf(Resources.powerup);
+            itemImages[ItemType.AlienShotgun] = new Gdk.Pixbuf(Resources.alien_gun);
+            itemImages[ItemType.Flamethrower] = new Gdk.Pixbuf(Resources.tozt);
+            itemImages[ItemType.FlamethrowerCanister] = new Gdk.Pixbuf(Resources.tozt_ammo);
+            itemImages[ItemType.ExtravisionPowerup] = new Gdk.Pixbuf(Resources.powerup);
+            itemImages[ItemType.OxygenPowerup] = new Gdk.Pixbuf(Resources.oxygen);
+            itemImages[ItemType.EnergyPowerup] = new Gdk.Pixbuf(Resources._1x);
+            itemImages[ItemType.DoubleEnergyPowerup] = new Gdk.Pixbuf(Resources._2x);
+            itemImages[ItemType.TripleEnergyPowerup] = new Gdk.Pixbuf(Resources._3x);
+            itemImages[ItemType.Shotgun] = new Gdk.Pixbuf(Resources.shotgun);
+            itemImages[ItemType.ShotgunMagazine] = new Gdk.Pixbuf(Resources.shotgun_ammo);
+            itemImages[ItemType.UplinkChip] = new Gdk.Pixbuf(Resources.uplink_chip);
+            itemImages[ItemType.SphtDoorKey] = new Gdk.Pixbuf(Resources.keycard);
+            itemImages[ItemType.RedBall] = new Gdk.Pixbuf(Resources.skull);
+            itemImages[ItemType.Smg] = new Gdk.Pixbuf(Resources.smg);
+            itemImages[ItemType.SmgAmmo] = new Gdk.Pixbuf(Resources.smg_ammo);
 
             Antialias = Weland.Settings.GetSetting("Drawer/SmoothLines", true);
 
